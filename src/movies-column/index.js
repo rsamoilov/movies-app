@@ -23,7 +23,7 @@ export default function MoviesColumn() {
     <div className="col-4">
       <div className="list-group">
         {movies.map((movie) =>
-          <a href="#" className="list-group-item list-group-item-action">{movie.title}</a>
+          <a key={movie.id} href="#" className="list-group-item list-group-item-action">{movie.title}</a>
         )}
       </div>
     </div>
