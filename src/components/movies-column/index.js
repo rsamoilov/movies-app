@@ -19,29 +19,27 @@ export default function MoviesColumn() {
   }
 
   return (
-    <div className="col-4 MoviesColumn">
-      <div className="list-group list-group-flush">
-        {movies.map((movie) =>
-          <a
-            key={movie.id}
-            href="#"
-            className="list-group-item list-group-item-action MoviesColumn__row"
-          >
-            <div class="d-flex justify-content-between">
-              <div>{movie.title}</div>
-              <div><Octicon><Thumbsup /></Octicon> {movie.rating}</div>
+    <div className="MoviesColumn list-group list-group-flush">
+      {movies.map((movie) =>
+        <a
+          key={movie.id}
+          href="#"
+          className="list-group-item list-group-item-action MoviesColumn__row"
+        >
+          <div class="d-flex justify-content-between">
+            <div>{movie.title}</div>
+            <div><Octicon><Thumbsup /></Octicon> {movie.rating}</div>
+          </div>
+          <div class="d-flex justify-content-between">
+            <div>
+              <span class="badge badge-pill badge-warning">genre</span>
             </div>
-            <div class="d-flex justify-content-between">
-              <div>
-                <span class="badge badge-pill badge-warning">genre</span>
-              </div>
-              <div>
-                <Octicon><Star /></Octicon>
-              </div>
+            <div>
+              <Octicon><Star /></Octicon>
             </div>
-          </a>
-        )}
-      </div>
+          </div>
+        </a>
+      )}
     </div>
   );
 }

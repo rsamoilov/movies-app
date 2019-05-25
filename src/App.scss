@@ -1,4 +1,13 @@
 .App {
   background-color: #131921;
-  padding: 10px;
+
+  &__sidebar {
+    height: 100vh;
+    overflow-y: scroll;
+  }
+
+  &__container {
+    height: 90vh;
+    background: white;
+  }
 }

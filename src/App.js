@@ -13,8 +13,12 @@ function App() {
   return (
     <div className="App container-fluid">
       <div className="row">
-        <MoviesColumn />
-        <MovieInfo />
+        <div className="col-4 App__sidebar">
+          <MoviesColumn />
+        </div>
+        <div className="col-8 App__container">
+          <MovieInfo />
+        </div>
       </div>
     </div>
   );
