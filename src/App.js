@@ -1,6 +1,7 @@
 import React, { setGlobal } from 'reactn';
-import MoviesColumn from "movies-column/index";
-import 'App.css';
+import MoviesColumn from "components/movies-column/index";
+import MovieInfo from "components/movie-info/index";
+import 'App.scss';
 
 setGlobal({
   movies: null,
@@ -11,7 +12,10 @@ setGlobal({
 function App() {
   return (
     <div className="App container-fluid">
-      <MoviesColumn />
+      <div className="row">
+        <MoviesColumn />
+        <MovieInfo />
+      </div>
     </div>
   );
 }

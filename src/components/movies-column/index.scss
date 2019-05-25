@@ -1,0 +1,14 @@
+.MoviesColumn {
+  &__row {
+    background-color: black;
+    color: white;
+    opacity: 0.8;
+    border-color: gray;
+  }
+
+  &__row:hover {
+    background-color: black;
+    color: white;
+    opacity: 0.4;
+  }
+}
