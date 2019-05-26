@@ -1,6 +1,7 @@
 import React, { useEffect, useGlobal } from 'reactn';
 import MovieController from 'controllers/movie-controller';
-import Octicon, { Star, Thumbsup } from '@githubprimer/octicons-react';
+import FavoriteButton from "components/favorite-button/index";
+import Octicon, { Thumbsup } from '@githubprimer/octicons-react';
 
 import "./index.scss"
 
@@ -35,9 +36,7 @@ export default function MoviesColumn() {
                 <span key={genre} className="badge badge-pill badge-warning mr-1">{genre}</span>
               ))}
             </div>
-            <div>
-              <Octicon><Star /></Octicon>
-            </div>
+            <FavoriteButton />
           </div>
         </a>
       )}
