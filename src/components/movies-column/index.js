@@ -32,7 +32,7 @@ export default function MoviesColumn() {
           <div className="d-flex justify-content-between">
             <div>
               {movie.getGenres().slice(0, 3).map(genre => (
-                <span className="badge badge-pill badge-warning mr-1">{genre}</span>
+                <span key={genre} className="badge badge-pill badge-warning mr-1">{genre}</span>
               ))}
             </div>
             <div>
