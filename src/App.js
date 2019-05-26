@@ -17,7 +17,7 @@ function App() {
 
   useEffect(() => {
     InitialDataController.loadData().then(() => setLoading(false));
-  });
+  }, []);
 
   if(isLoading) {
     return <div>Loading...</div>;
