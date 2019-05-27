@@ -2,7 +2,6 @@ import React from "reactn";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import MovieRecord from "records/movie-record";
-import configuration from "records/configuration";
 
 export default function Recommendations(props) {
   return (
@@ -13,7 +12,7 @@ export default function Recommendations(props) {
         {props.movies.slice(0, 5).map(movie => (
           <div key={movie.id} className="col-2">
             <Link to={`/movies/${movie.id}`}>
-              <img src={configuration.getImageUrl(movie.posterPath, 1)} className="img-fluid" />
+              <img src={movie.getPosterURL(1)} className="img-fluid" />
             </Link>
           </div>
         ))}

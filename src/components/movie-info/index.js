@@ -41,7 +41,7 @@ export default function MovieInfo({ match }) {
 
       <div className="d-flex justify-content-between">
         <div className="col-4">
-          <img className="img-fluid" src={configuration.getImageUrl(selectedMovie.posterPath)} />
+          <img className="img-fluid" src={selectedMovie.getPosterURL()} />
         </div>
 
         <div className="col-8">

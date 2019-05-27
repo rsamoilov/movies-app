@@ -4,7 +4,7 @@ class Configuration {
     this.posterSizes = apiConfig.images.poster_sizes;
   }
 
-  getImageUrl(imagePath, sizeIndex = 3) {
+  getImageUrl(imagePath, sizeIndex) {
     return `${this.imageBaseUrl}${this.posterSizes[sizeIndex]}${imagePath}`;
   }
 }
