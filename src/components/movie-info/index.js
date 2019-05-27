@@ -4,27 +4,18 @@ import RatingIcon from "components/rating-icon/index";
 import FavoriteButton from "components/favorite-button/index";
 import IMDBLink from "components/imdb-link/index";
 import GenresList from "components/genres-list/index";
-import history from "utils/history";
 import configuration from "records/configuration";
 import Properties from "./properties";
 import Recommendations from "./recommendations";
 
 import "./index.scss";
 
-function currentMovieId() {
-  const path = history.location.pathname;
-
-  return path === "/" ? null : parseInt(path.slice(1));
-}
-
-export default function MovieInfo() {
+export default function MovieInfo({ match }) {
   const [selectedMovie, setMovie] = useGlobal("selectedMovie");
 
   useEffect(() => {
-    history.listen((location, action) => {
-      MovieController.getMovie(currentMovieId()).then((movie) => setMovie(movie));
-    });
-  }, []);
+    MovieController.getMovie(match.params.id).then((movie) => setMovie(movie));
+  }, [match.params.id]);
 
   if (!selectedMovie) {
     return <div className="MovieInfo"></div>;

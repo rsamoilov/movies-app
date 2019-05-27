@@ -1,9 +1,9 @@
 import React, { useEffect, useGlobal } from 'reactn';
+import { Link } from "react-router-dom";
 import MovieController from 'controllers/movie-controller';
 import FavoriteButton from "components/favorite-button/index";
 import RatingIcon from "components/rating-icon/index";
 import GenresList from "components/genres-list/index";
-import history from "utils/history";
 
 import "./index.scss"
 
@@ -23,9 +23,9 @@ export default function MoviesColumn() {
   return (
     <div className="MoviesColumn list-group list-group-flush">
       {movies.map((movie) =>
-        <button
+        <Link
           key={movie.id}
-          onClick={(e) => history.push(movie.id.toString())}
+          to={`/movies/${movie.id}`}
           className="list-group-item list-group-item-action MoviesColumn__row"
         >
           <div className="d-flex justify-content-between">
@@ -38,7 +38,7 @@ export default function MoviesColumn() {
             </div>
             <FavoriteButton />
           </div>
-        </button>
+        </Link>
       )}
     </div>
   );
