@@ -36,7 +36,7 @@ export default function MoviesColumn() {
             <div>
               <GenresList genres={movie.getGenres().slice(0, 3)} />
             </div>
-            <FavoriteButton />
+            <FavoriteButton movie={movie} />
           </div>
         </Link>
       )}

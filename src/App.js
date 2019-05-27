@@ -10,6 +10,7 @@ setGlobal({
   isLoading: true,
   movies: null,
   selectedMovie: null,
+  favorite: null,
   searchTerm: ""
 });
 

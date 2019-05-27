@@ -31,7 +31,7 @@ export default function MovieInfo({ match }) {
         <div className="col-2">
           <div className="d-flex justify-content-end">
             <div className="mr-2"><RatingIcon movie={selectedMovie} /></div>
-            <FavoriteButton />
+            <FavoriteButton movie={selectedMovie} />
           </div>
           <div className="float-right">
             <IMDBLink movie={selectedMovie} />
