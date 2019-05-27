@@ -1,7 +1,8 @@
 import React, { useEffect, useGlobal } from 'reactn';
 import MovieController from 'controllers/movie-controller';
 import FavoriteButton from "components/favorite-button/index";
-import Octicon, { Thumbsup } from '@githubprimer/octicons-react';
+import RatingIcon from "components/rating-icon/index";
+import history from "utils/history";
 
 import "./index.scss"
 
@@ -21,14 +22,14 @@ export default function MoviesColumn() {
   return (
     <div className="MoviesColumn list-group list-group-flush">
       {movies.map((movie) =>
-        <a
+        <button
           key={movie.id}
-          href="#"
+          onClick={(e) => history.push(movie.id.toString())}
           className="list-group-item list-group-item-action MoviesColumn__row"
         >
           <div className="d-flex justify-content-between">
             <div>{movie.title}</div>
-            <div><Octicon><Thumbsup /></Octicon> {movie.rating}</div>
+            <RatingIcon movie={movie} />
           </div>
           <div className="d-flex justify-content-between">
             <div>
@@ -38,7 +39,7 @@ export default function MoviesColumn() {
             </div>
             <FavoriteButton />
           </div>
-        </a>
+        </button>
       )}
     </div>
   );

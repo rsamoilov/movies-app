@@ -9,9 +9,7 @@ export default class MovieRecord {
     this.id = movie.id;
     this.title = movie.title;
     this.originalTitle = movie.original_title;
-    this.overview = movie.overview;
     this.rating = movie.vote_average;
-    this.poster = movie.poster_path;
     this._genreIds = movie.genre_ids;
   }
 
