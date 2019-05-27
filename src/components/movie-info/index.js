@@ -33,23 +33,23 @@ export default function MovieInfo() {
   return (
     <div className="MovieInfo p-3">
       <div className="d-flex justify-content-between mb-3">
-        <div>
+        <div className="col-10">
           <h4>{selectedMovie.title}</h4>
           <h6 className="text-secondary">{selectedMovie.originalTitle}</h6>
         </div>
-        <div>
-          <div className="d-flex justify-content-around">
-            <RatingIcon movie={selectedMovie} />
+        <div className="col-2">
+          <div className="d-flex justify-content-end">
+            <div className="mr-2"><RatingIcon movie={selectedMovie} /></div>
             <FavoriteButton />
           </div>
-          <div>
+          <div className="float-right">
             <IMDBLink movie={selectedMovie} />
           </div>
         </div>
       </div>
 
       <div className="d-flex justify-content-between">
-        <div className="col-4 MovieInfo__poster">
+        <div className="col-4">
           <img className="img-fluid" src={configuration.getImageUrl(selectedMovie.posterPath)} />
         </div>
 
