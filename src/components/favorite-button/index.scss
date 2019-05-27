@@ -1,4 +1,6 @@
 .FavoriteButton {
+  cursor: pointer;
+
   &__selected {
     color: orange;
   }
