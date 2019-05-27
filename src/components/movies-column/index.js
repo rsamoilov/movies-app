@@ -2,6 +2,7 @@ import React, { useEffect, useGlobal } from 'reactn';
 import MovieController from 'controllers/movie-controller';
 import FavoriteButton from "components/favorite-button/index";
 import RatingIcon from "components/rating-icon/index";
+import GenresList from "components/genres-list/index";
 import history from "utils/history";
 
 import "./index.scss"
@@ -33,9 +34,7 @@ export default function MoviesColumn() {
           </div>
           <div className="d-flex justify-content-between">
             <div>
-              {movie.getGenres().slice(0, 3).map(genre => (
-                <span key={genre} className="badge badge-pill badge-warning mr-1">{genre}</span>
-              ))}
+              <GenresList genres={movie.getGenres().slice(0, 3)} />
             </div>
             <FavoriteButton />
           </div>

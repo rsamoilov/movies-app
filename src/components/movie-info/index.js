@@ -3,6 +3,7 @@ import MovieController from "controllers/movie-controller";
 import RatingIcon from "components/rating-icon/index";
 import FavoriteButton from "components/favorite-button/index";
 import IMDBLink from "components/imdb-link/index";
+import GenresList from "components/genres-list/index";
 import history from "utils/history";
 import configuration from "records/configuration";
 import Properties from "./properties";
@@ -60,6 +61,8 @@ export default function MovieInfo() {
               {selectedMovie.overview}
             </p>
           </div>
+
+          <GenresList genres={selectedMovie.getGenres()} />
         </div>
       </div>
 

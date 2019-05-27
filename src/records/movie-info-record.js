@@ -19,4 +19,8 @@ export default class MovieInfoRecord extends MovieRecord {
 
     this.recommendations = movie.similar.results.map((apiMovie) => MovieRecord.parse(apiMovie));
   }
+
+  getGenres() {
+    return this.genres.map(genreMap => genreMap.name);
+  }
 }
