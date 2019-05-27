@@ -18,7 +18,7 @@ export default function FavoriteButton() {
 
   return (
     <div onClick={handleClick}>
-      <Octicon height="24px"><Star /></Octicon>
+      <Octicon height={24}><Star /></Octicon>
     </div>
   );
 }
