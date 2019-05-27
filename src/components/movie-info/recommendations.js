@@ -8,7 +8,7 @@ export default function Recommendations(props) {
     <div className="d-flex justify-content-center">
       {props.movies.slice(0, 5).map(movie => (
         <div className="col-2">
-          <img src={configuration.getImageUrl(movie.posterPath, 1)} className="card-img-top" />
+          <img src={configuration.getImageUrl(movie.posterPath, 1)} className="img-fluid" />
         </div>
       ))}
     </div>
