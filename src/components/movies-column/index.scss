@@ -11,4 +11,14 @@
     color: white;
     opacity: 0.4;
   }
+
+  &__selected-row {
+    background-color: gray;
+    opacity: 0.8;
+  }
+
+  &__selected-row:hover {
+    background-color: gray;
+    opacity: 0.8;
+  }
 }

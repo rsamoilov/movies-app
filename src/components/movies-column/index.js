@@ -1,5 +1,6 @@
 import React, { useEffect, useGlobal } from 'reactn';
 import { Link } from "react-router-dom";
+import classNames from 'classnames';
 import MovieController from 'controllers/movie-controller';
 import FavoriteButton from "components/favorite-button/index";
 import RatingIcon from "components/rating-icon/index";
@@ -9,6 +10,7 @@ import "./index.scss"
 
 export default function MoviesColumn() {
   const [movies, setMovies] = useGlobal("movies");
+  const [selectedMovie, _]  = useGlobal("selectedMovie");
 
   useEffect(() => {
     MovieController.getMovies().then((movies) => setMovies(movies));
@@ -26,7 +28,10 @@ export default function MoviesColumn() {
         <Link
           key={movie.id}
           to={`/movies/${movie.id}`}
-          className="list-group-item list-group-item-action MoviesColumn__row"
+          className={classNames(
+            "list-group-item list-group-item-action MoviesColumn__row",
+            { "MoviesColumn__selected-row": selectedMovie && movie.id === selectedMovie.id }
+          )}
         >
           <div className="d-flex justify-content-between">
             <div>{movie.title}</div>
