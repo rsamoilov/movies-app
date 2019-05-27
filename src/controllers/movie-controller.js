@@ -11,7 +11,7 @@ export default class MovieStore {
 
   static getMovie(id) {
     return fetch(
-      `http://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_API_KEY}`
+      `http://api.themoviedb.org/3/movie/${id}?&append_to_response=similar&api_key=${process.env.REACT_APP_API_KEY}`
     ).then(response => response.json()).
       then(json => MovieInfoRecord.parse(json));
   }

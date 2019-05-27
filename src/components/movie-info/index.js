@@ -6,6 +6,7 @@ import IMDBLink from "components/imdb-link/index";
 import history from "utils/history";
 import configuration from "records/configuration";
 import Properties from "./properties";
+import Recommendations from "./recommendations";
 
 import "./index.scss";
 
@@ -60,6 +61,10 @@ export default function MovieInfo() {
             </p>
           </div>
         </div>
+      </div>
+
+      <div className="col-10 mx-auto mt-5">
+        <Recommendations movies={selectedMovie.recommendations} />
       </div>
     </div>
   );
