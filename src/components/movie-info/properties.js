@@ -19,7 +19,7 @@ export default function Properties(props) {
       <tbody>
         <tr>
           <td>Budget</td>
-          <td>{formatMoney(props.movie.budget)}</td>
+          <td>${formatMoney(props.movie.budget)}</td>
         </tr>
         <tr>
           <td>Revenue</td>
