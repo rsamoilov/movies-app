@@ -18,7 +18,7 @@ export default class MovieStore {
 
   static searchMovies(searchTerm) {
     return fetch(
-      `http://api.themoviedb.org/3/search/movie?query=${searchTerm}&api_key=${process.env.REACT_APP_API_KEY}`
+      `http://api.themoviedb.org/3/search/movie?query=${encodeURI(searchTerm)}&api_key=${process.env.REACT_APP_API_KEY}`
     ).then(response => response.json()).
       then(json => json.results.map(m => MovieRecord.parse(m)));
   }
