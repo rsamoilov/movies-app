@@ -11,7 +11,7 @@ setGlobal({
   movies: null,
   selectedMovie: null,
   favorite: null,
-  searchTerm: ""
+  search: ""
 });
 
 function App() {

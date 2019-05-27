@@ -21,4 +21,10 @@
     background-color: gray;
     opacity: 0.8;
   }
+
+  &__plain-row, &__plain-row:hover {
+    color: white;
+    opacity: 1;
+    border-color: gray;
+  }
 }

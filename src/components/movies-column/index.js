@@ -2,6 +2,7 @@ import React, { useEffect, useGlobal } from 'reactn';
 import { Link } from "react-router-dom";
 import classNames from 'classnames';
 import MovieController from 'controllers/movie-controller';
+import SearchField from "components/search-field/index";
 import FavoriteButton from "components/favorite-button/index";
 import RatingIcon from "components/rating-icon/index";
 import GenresList from "components/genres-list/index";
@@ -24,6 +25,10 @@ export default function MoviesColumn() {
 
   return (
     <div className="MoviesColumn list-group list-group-flush">
+      <div className="list-group-item list-group-item-action MoviesColumn__row MoviesColumn__plain-row">
+        <SearchField />
+      </div>
+
       {movies.map((movie) =>
         <Link
           key={movie.id}
