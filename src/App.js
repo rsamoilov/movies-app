@@ -25,11 +25,11 @@ function App() {
 
   return (
     <div className="App container-fluid">
-      <div className="row">
-        <div className="col-4 mt-2 App__sidebar">
+      <div className="row pt-2">
+        <div className="col-4 App__sidebar">
           <MoviesColumn />
         </div>
-        <div className="col-8 mt-2 App__container">
+        <div className="col-8 App__container">
           <MovieInfo />
         </div>
       </div>
