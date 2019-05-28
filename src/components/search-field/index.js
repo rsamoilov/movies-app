@@ -1,30 +1,27 @@
 import React, { useGlobal } from "reactn";
-import { createBrowserHistory } from 'history';
+import withSearch from "components/hocs/with-search";
 import MovieController from "controllers/movie-controller";
 
-const history = createBrowserHistory();
-
-export default function SearchField() {
-  const [searchTerm, setSearch] = useGlobal("search");
+function SearchField(props) {
   const [_, setMovies] = useGlobal("movies");
 
+  const { setQuery, getQuery } = props;
+
   function handleChange(e) {
-    const search = e.target.value;
+    const searchQuery = e.target.value;
+    setQuery(searchQuery);
 
-    setSearch(search);
-    history.push({
-      search: search ? `?q=${search}` : null
-    });
-
-    MovieController.searchMovies(search).then(movies => setMovies(movies));
+    MovieController.fetchMovies(searchQuery).then(movies => setMovies(movies));
   }
 
   return (
     <input
       className="form-control rounded-pill"
       placeholder="Search..."
-      value={searchTerm}
+      value={getQuery()}
       onChange={handleChange}
     />
   );
 }
+
+export default withSearch(SearchField);

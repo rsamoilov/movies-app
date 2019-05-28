@@ -1,6 +1,7 @@
 import React, { useEffect, useGlobal } from 'reactn';
 import { Link } from "react-router-dom";
 import classNames from 'classnames';
+import withSearch from "components/hocs/with-search";
 import MovieController from 'controllers/movie-controller';
 import SearchField from "components/search-field/index";
 import FavoriteButton from "components/favorite-button/index";
@@ -9,12 +10,14 @@ import GenresList from "components/genres-list/index";
 
 import "./index.scss"
 
-export default function MoviesColumn() {
+function MoviesColumn(props) {
   const [movies, setMovies] = useGlobal("movies");
   const [selectedMovie, _]  = useGlobal("selectedMovie");
 
+  const { getSearch, getQuery } = props;
+
   useEffect(() => {
-    MovieController.getMovies().then((movies) => setMovies(movies));
+    MovieController.fetchMovies(getQuery()).then((movies) => setMovies(movies));
   }, []);
 
   if (movies === null) {
@@ -25,14 +28,14 @@ export default function MoviesColumn() {
 
   return (
     <div className="MoviesColumn list-group list-group-flush">
-      <div className="list-group-item list-group-item-action MoviesColumn__row MoviesColumn__plain-row">
+      <div className="list-group-item MoviesColumn__row MoviesColumn__plain-row">
         <SearchField />
       </div>
 
       {movies.map((movie) =>
         <Link
           key={movie.id}
-          to={`/movies/${movie.id}`}
+          to={{ pathname: `/movies/${movie.id}`, search: getSearch() }}
           className={classNames(
             "list-group-item list-group-item-action MoviesColumn__row",
             { "MoviesColumn__selected-row": selectedMovie && movie.id === selectedMovie.id }
@@ -53,3 +56,5 @@ export default function MoviesColumn() {
     </div>
   );
 }
+
+export default withSearch(MoviesColumn);
