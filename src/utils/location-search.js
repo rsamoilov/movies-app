@@ -8,7 +8,7 @@ export default class LocationSearch {
   }
 
   getQuery() {
-    return this.query || null;
+    return this.query;
   }
 
   toString() {
