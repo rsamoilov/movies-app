@@ -3,10 +3,12 @@ import PropTypes from 'prop-types';
 import Octicon, { Thumbsup } from '@githubprimer/octicons-react';
 import MovieRecord from "records/movie-record";
 
+import "./index.scss";
+
 export default function RatingIcon(props) {
   return (
     <div>
-      <Octicon><Thumbsup /></Octicon> {props.movie.rating}
+      <Octicon className="RatingIcon__icon-wrapper"><Thumbsup /></Octicon> {props.movie.rating}
     </div>
   );
 }
