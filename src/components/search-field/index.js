@@ -2,16 +2,23 @@ import React, { useGlobal } from "reactn";
 import withSearch from "components/hocs/with-search";
 import MovieController from "controllers/movie-controller";
 
+let searchTimeoutId = null;
+
 function SearchField(props) {
   const [_, setMovies] = useGlobal("movies");
-
   const { setQuery, getQuery } = props;
 
   function handleChange(e) {
+    clearTimeout(searchTimeoutId);
+
     const searchQuery = e.target.value;
     setQuery(searchQuery);
+    setMovies(null);
 
-    MovieController.fetchMovies(searchQuery).then(movies => setMovies(movies));
+    searchTimeoutId = setTimeout(
+      () => MovieController.fetchMovies(searchQuery).then(movies => setMovies(movies)),
+      200
+    );
   }
 
   return (
