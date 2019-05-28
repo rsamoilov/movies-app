@@ -10,13 +10,21 @@ export default function withSearch(WrappedComponent) {
       locationSearch.setQuery(searchQuery)
       props.history.push({ search: locationSearch.toString() });
     };
-    const getQuery = () => locationSearch.getQuery();
+    const setPage = (page) => {
+      locationSearch.setPage(page);
+      props.history.push({ search: locationSearch.toString() });
+    };
+
+    const getQuery  = () => locationSearch.getQuery();
+    const getPage   = () => locationSearch.getPage();
     const getSearch = () => locationSearch.toString();
 
     return <WrappedComponent
              {...props}
              setQuery={setQuery}
              getQuery={getQuery}
+             setPage={setPage}
+             getPage={getPage}
              getSearch={getSearch}
            />;
   });
