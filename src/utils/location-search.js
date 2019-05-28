@@ -1,6 +1,6 @@
 export default class LocationSearch {
   constructor(search) {
-    this.query = search.slice(3);
+    this.query = decodeURI(search.slice(3));
   }
 
   setQuery(query) {
@@ -12,6 +12,6 @@ export default class LocationSearch {
   }
 
   toString() {
-    return this.query ? `?q=${this.query}` : "";
+    return this.query ? `?q=${encodeURI(this.query)}` : "";
   }
 }
