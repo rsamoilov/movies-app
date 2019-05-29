@@ -11,7 +11,7 @@ import GenresList from "components/genres-list/index";
 import "./index.scss"
 
 function MoviesColumn(props) {
-  const [movies, setMovies] = useGlobal("movies");
+  const [moviesCollection, setMovies] = useGlobal("movies");
   const [selectedMovie, _]  = useGlobal("selectedMovie");
 
   const { getSearch, getQuery } = props;
@@ -27,14 +27,14 @@ function MoviesColumn(props) {
       </div>
 
       <div className="MoviesColumn__body">
-        {movies === null ? (
+        {moviesCollection === null ? (
           <div className="text-center align-middle MoviesColumn__loading-container">
             <div className="spinner-border text-light MoviesColumn__loading-indicator" role="status">
               <span className="sr-only">Loading...</span>
             </div>
           </div>
         ) : (
-          movies.map((movie) =>
+          moviesCollection.getMovies().map((movie) =>
             <Link
               key={movie.id}
               to={{ pathname: `/movies/${movie.id}`, search: getSearch() }}

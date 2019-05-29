@@ -1,4 +1,4 @@
-import MovieRecord from "records/movie-record";
+import MovieCollection from "records/movie-collection";
 import MovieInfoRecord from "records/movie-info-record";
 
 export default class MovieStore {
@@ -7,7 +7,7 @@ export default class MovieStore {
 
     return moviesPromise.
       then(response => response.json()).
-      then(json => json.results.map(m => MovieRecord.parse(m)));
+      then(json => MovieCollection.parse(json));
   }
 
   static getMovies() {
