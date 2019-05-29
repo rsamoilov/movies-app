@@ -4,6 +4,10 @@ import PropTypes from "prop-types";
 import MovieRecord from "records/movie-record";
 
 export default function Recommendations(props) {
+  if (!props.movies.length) {
+    return null;
+  }
+
   return (
     <React.Fragment>
       <h5 className="text-center">You may also like:</h5>
