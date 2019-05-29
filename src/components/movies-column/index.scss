@@ -1,4 +1,9 @@
 .MoviesColumn {
+  &__body {
+    height: 91vh;
+    overflow: scroll;
+  }
+
   &__row {
     background-color: black;
     color: white;

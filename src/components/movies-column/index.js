@@ -26,35 +26,37 @@ function MoviesColumn(props) {
         <SearchField />
       </div>
 
-      {movies === null ? (
-        <div className="text-center align-middle MoviesColumn__loading-container">
-          <div className="spinner-border text-light MoviesColumn__loading-indicator" role="status">
-            <span className="sr-only">Loading...</span>
+      <div className="MoviesColumn__body">
+        {movies === null ? (
+          <div className="text-center align-middle MoviesColumn__loading-container">
+            <div className="spinner-border text-light MoviesColumn__loading-indicator" role="status">
+              <span className="sr-only">Loading...</span>
+            </div>
           </div>
-        </div>
-      ) : (
-        movies.map((movie) =>
-          <Link
-            key={movie.id}
-            to={{ pathname: `/movies/${movie.id}`, search: getSearch() }}
-            className={classNames(
-              "list-group-item list-group-item-action MoviesColumn__row",
-              { "MoviesColumn__selected-row": selectedMovie && movie.id === selectedMovie.id }
-            )}
-          >
-            <div className="d-flex justify-content-between">
-              <div>{movie.title}</div>
-              <RatingIcon movie={movie} />
-            </div>
-            <div className="d-flex justify-content-between">
-              <div>
-                <GenresList genres={movie.getGenres().slice(0, 3)} />
+        ) : (
+          movies.map((movie) =>
+            <Link
+              key={movie.id}
+              to={{ pathname: `/movies/${movie.id}`, search: getSearch() }}
+              className={classNames(
+                "list-group-item list-group-item-action MoviesColumn__row",
+                { "MoviesColumn__selected-row": selectedMovie && movie.id === selectedMovie.id }
+              )}
+            >
+              <div className="d-flex justify-content-between">
+                <div>{movie.title}</div>
+                <RatingIcon movie={movie} />
               </div>
-              <FavoriteButton movie={movie} />
-            </div>
-          </Link>
-        )
-      )}
+              <div className="d-flex justify-content-between">
+                <div>
+                  <GenresList genres={movie.getGenres().slice(0, 3)} />
+                </div>
+                <FavoriteButton movie={movie} />
+              </div>
+            </Link>
+          )
+        )}
+      </div>
     </div>
   );
 }
