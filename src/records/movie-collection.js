@@ -2,13 +2,17 @@ import MovieRecord from "records/movie-record";
 
 export default class MovieCollection {
   static parse(apiMovies) {
-    return new MovieCollection(apiMovies);
+    return new MovieCollection({
+      currentPage: apiMovies.page,
+      total: apiMovies.total_results,
+      movies: apiMovies.results.map(m => MovieRecord.parse(m))
+    });
   }
 
-  constructor(apiMovies) {
-    this.currentPage = apiMovies.page;
-    this.total = apiMovies.total_results;
-    this.movies = (apiMovies.results || []).map(m => MovieRecord.parse(m))
+  constructor(collection) {
+    this.currentPage = collection.currentPage;
+    this.total = collection.total;
+    this.movies = collection.movies;
   }
 
   getMovies() {
@@ -20,12 +24,10 @@ export default class MovieCollection {
   }
 
   merge(otherCollection) {
-    const newCollection = new MovieCollection({});
-
-    newCollection.currentPage = otherCollection.currentPage;
-    newCollection.total = otherCollection.total;
-    newCollection.movies = [...this.movies, ...otherCollection.movies];
-
-    return newCollection;
+    return new MovieCollection({
+      currentPage: otherCollection.currentPage,
+      total: otherCollection.total,
+      movies: [...this.movies, ...otherCollection.movies]
+    });
   }
 }
