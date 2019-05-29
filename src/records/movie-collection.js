@@ -5,7 +5,8 @@ export default class MovieCollection {
     return new MovieCollection({
       currentPage: apiMovies.page,
       total: apiMovies.total_results,
-      movies: apiMovies.results.map(m => MovieRecord.parse(m))
+      movies: apiMovies.results.map(m => MovieRecord.parse(m)),
+      perPage: apiMovies.results.length
     });
   }
 
@@ -13,6 +14,7 @@ export default class MovieCollection {
     this.currentPage = collection.currentPage;
     this.total = collection.total;
     this.movies = collection.movies;
+    this.perPage = collection.perPage;
   }
 
   getMovies() {
@@ -27,7 +29,8 @@ export default class MovieCollection {
     return new MovieCollection({
       currentPage: otherCollection.currentPage,
       total: otherCollection.total,
-      movies: [...this.movies, ...otherCollection.movies]
+      movies: [...this.movies, ...otherCollection.movies],
+      perPage: this.perPage
     });
   }
 }

@@ -2,22 +2,22 @@ import MovieCollection from "records/movie-collection";
 import MovieInfoRecord from "records/movie-info-record";
 
 export default class MovieStore {
-  static fetchMovies(searchTerm) {
-    const moviesPromise = searchTerm ? this.searchMovies(searchTerm) : this.getMovies();
+  static fetchMovies(searchQuery, page = 1) {
+    const moviesPromise = searchQuery ? this.searchMovies(searchQuery) : this.getMovies(page);
 
     return moviesPromise.
       then(response => response.json()).
       then(json => MovieCollection.parse(json));
   }
 
-  static getMovies() {
+  static getMovies(page) {
     return fetch(
-      `http://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}`
+      `http://api.themoviedb.org/3/movie/popular?page=${page}&api_key=${process.env.REACT_APP_API_KEY}`
     );
   }
 
-  static searchMovies(searchTerm) {
-    const query = encodeURI(searchTerm);
+  static searchMovies(searchQuery) {
+    const query = encodeURI(searchQuery);
 
     return fetch(
       `http://api.themoviedb.org/3/search/movie?query=${query}&api_key=${process.env.REACT_APP_API_KEY}`
