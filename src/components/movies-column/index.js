@@ -33,7 +33,7 @@ function MoviesColumn(props) {
     }
 
     // load only new content
-    if (currentPage === moviesCollection.currentPage) {
+    if (currentPage === moviesCollection.currentPage && moviesCollection.hasMore()) {
       MovieController.fetchMovies(getQuery(), nextPage).then((newMovies) =>
         setMovies(moviesCollection.merge(newMovies))
       );
