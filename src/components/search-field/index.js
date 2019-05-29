@@ -6,7 +6,7 @@ let searchTimeoutId = null;
 
 function SearchField(props) {
   const [_, setMovies] = useGlobal("movies");
-  const { setQuery, getQuery } = props;
+  const { setQuery, getQuery, getPage } = props;
 
   function handleChange(e) {
     clearTimeout(searchTimeoutId);
@@ -16,7 +16,7 @@ function SearchField(props) {
     setMovies(null);
 
     searchTimeoutId = setTimeout(
-      () => MovieController.fetchMovies(searchQuery).then(movies => setMovies(movies)),
+      () => MovieController.fetchMovies(searchQuery, getPage()).then(movies => setMovies(movies)),
       200
     );
   }
