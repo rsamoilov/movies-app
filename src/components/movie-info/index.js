@@ -48,7 +48,7 @@ export default function MovieInfo({ match }) {
           <Properties movie={selectedMovie} />
 
           <div className="mt-4">
-            <p className="text-justify">
+            <p className="text-justify MovieInfo__overview">
               {selectedMovie.overview}
             </p>
           </div>
