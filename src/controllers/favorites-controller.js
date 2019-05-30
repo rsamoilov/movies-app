@@ -1,14 +1,17 @@
+const StorageKey = "favorites";
+
 export default class FavoritesController {
+
   static addToFavorites(movie) {
-    localStorage.setItem(this.getKey(movie), "1");
+    this.setFavorites((favorites) => ({ ...favorites, [movie.id]: true }));
   }
 
   static removeFromFavorites(movie) {
-    localStorage.removeItem(this.getKey(movie));
+    this.setFavorites((favorites) => ({ ...favorites, [movie.id]: false }));
   }
 
   static isFavorite(movie) {
-    return !!localStorage.getItem(this.getKey(movie));
+    return !!this.getFavorites()[movie.id];
   }
 
   static toggleFavorite(movie) {
@@ -23,7 +26,14 @@ export default class FavoritesController {
     return !isFavorite;
   }
 
-  static getKey(movie) {
-    return `favorites:${movie.id}`;
+  static getFavorites() {
+    return JSON.parse(localStorage.getItem(StorageKey)) || {};
+  }
+
+  static setFavorites(callback) {
+    const oldFavorites = this.getFavorites();
+    const newFavorites = callback(oldFavorites);
+
+    localStorage.setItem(StorageKey, JSON.stringify(newFavorites));
   }
 }
