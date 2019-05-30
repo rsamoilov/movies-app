@@ -56,7 +56,7 @@ function MoviesColumn(props) {
                 )}
               >
                 <div className="d-flex justify-content-between">
-                  <div>{movie.title}</div>
+                  <div className="col-10 p-0">{movie.title}</div>
                   <RatingIcon movie={movie} />
                 </div>
                 <div className="d-flex justify-content-between">
