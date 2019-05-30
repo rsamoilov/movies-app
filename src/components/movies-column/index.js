@@ -15,35 +15,19 @@ function MoviesColumn(props) {
   const [moviesCollection, setMovies] = useGlobal("movies");
   const [selectedMovie, _]  = useGlobal("selectedMovie");
 
-  const { getSearch, getQuery, getPage, setPage } = props;
+  const { getSearch, getQuery } = props;
 
   useEffect(() => {
-    MovieController.fetchMovies(getQuery(), getPage()).then((moviesCollection) =>
+    MovieController.fetchMovies(getQuery()).then((moviesCollection) =>
       setMovies(moviesCollection)
     );
   }, []);
 
   function loadMoreMovies(e) {
-    const currentPage = getPage();
-    const nextPage = currentPage + 1;
-
-    // a user is going down
-    if (e.previousPosition === Waypoint.below) {
-      setPage(nextPage);
-    }
-
-    // load only new content
-    if (currentPage === moviesCollection.currentPage && moviesCollection.hasMore()) {
-      MovieController.fetchMovies(getQuery(), nextPage).then((newMovies) =>
+    if (moviesCollection.hasMore()) {
+      MovieController.fetchMovies(getQuery(), moviesCollection.currentPage + 1).then((newMovies) =>
         setMovies(moviesCollection.merge(newMovies))
       );
-    }
-  }
-
-  function decrementPageNo(e) {
-    // a user is going up
-    if (e.currentPosition === Waypoint.below) {
-      setPage(getPage() - 1);
     }
   }
 
@@ -61,9 +45,10 @@ function MoviesColumn(props) {
             </div>
           </div>
         ) : (
-          moviesCollection.getMovies().map((movie, i) => 
-            <Fragment key={movie.id}>
+          <Fragment>
+            {moviesCollection.getMovies().map((movie, i) => 
               <Link
+                key={movie.id}
                 to={{ pathname: `/movies/${movie.id}`, search: getSearch() }}
                 className={classNames(
                   "list-group-item list-group-item-action MoviesColumn__row",
@@ -81,17 +66,9 @@ function MoviesColumn(props) {
                   <FavoriteButton movie={movie} />
                 </div>
               </Link>
-              {(i + 1) % moviesCollection.perPage === 0 && (
-                <Waypoint
-                  key={i}
-                  onEnter={loadMoreMovies}
-                  onLeave={decrementPageNo}
-                  bottomOffset="-150px"
-                >
-                </Waypoint>
-              )}
-            </Fragment>
-          )
+            )}
+            <Waypoint onEnter={loadMoreMovies} bottomOffset="-150px" />
+          </Fragment>
         )}
       </div>
     </div>
