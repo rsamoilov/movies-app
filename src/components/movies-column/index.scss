@@ -1,3 +1,7 @@
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins/_breakpoints";
+
 .MoviesColumn {
   &__body {
     height: 91vh;
@@ -36,6 +40,10 @@
   &__loading-container {
     height: 100%;
     margin-top: 40vh;
+
+    @include media-breakpoint-down(md) {
+      margin-top: 5vh;
+    }
   }
 
   &__loading-indicator {

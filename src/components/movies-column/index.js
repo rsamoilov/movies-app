@@ -51,7 +51,7 @@ function MoviesColumn(props) {
 
       <div className="MoviesColumn__body" ref={moviesContainerEl}>
         {moviesCollection === null ? (
-          <div className="text-center align-middle MoviesColumn__loading-container">
+          <div className="text-center MoviesColumn__loading-container">
             <div className="spinner-border text-light MoviesColumn__loading-indicator" role="status">
               <span className="sr-only">Loading...</span>
             </div>
