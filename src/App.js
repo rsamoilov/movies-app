@@ -2,6 +2,7 @@ import React, { setGlobal, useGlobal, useEffect } from "reactn";
 import { BrowserRouter, Route } from "react-router-dom";
 import classNames from "classnames";
 import InitialDataController from "controllers/initial-data-controller";
+import WelcomeMessage from "components/welcome-message/index";
 import MoviesColumn from "components/movies-column/index";
 import MovieInfo from "components/movie-info/index";
 
@@ -33,9 +34,14 @@ function App() {
           <Route
             path="/"
             render={props =>
-              <div className={classNames("col-12 col-lg-4 App__sidebar", { "d-none d-lg-block": selectedMovie })}>
-                <MoviesColumn {...props} />
-              </div>
+              <React.Fragment>
+                <div className={classNames("col-12 col-lg-4 App__sidebar", { "d-none d-lg-block": selectedMovie })}>
+                  <MoviesColumn {...props} />
+                </div>
+                {!selectedMovie && (
+                  <WelcomeMessage />
+                )}
+              </React.Fragment>
             }
           />
           <Route
