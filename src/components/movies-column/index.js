@@ -13,7 +13,7 @@ import "./index.scss"
 
 function MoviesColumn(props) {
   const [moviesCollection, setMovies] = useGlobal("movies");
-  const [selectedMovie, _]  = useGlobal("selectedMovie");
+  const [selectedMovie, setSelectedMovie]  = useGlobal("selectedMovie");
 
   const { getSearch, getQuery } = props;
 
@@ -22,6 +22,13 @@ function MoviesColumn(props) {
       setMovies(moviesCollection)
     );
   }, []);
+
+  // correctly handle browser's back button
+  useEffect(() => {
+    if (props.location.pathname === "/") {
+      setSelectedMovie(null);
+    }
+  }, [props.location.pathname]);
 
   function loadMoreMovies(e) {
     if (moviesCollection.hasMore()) {
