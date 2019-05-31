@@ -14,7 +14,10 @@ export default function MovieInfo({ match }) {
   const [selectedMovie, setMovie] = useGlobal("selectedMovie");
 
   useEffect(() => {
-    MovieController.getMovie(match.params.id).then((movie) => setMovie(movie));
+    MovieController.getMovie(match.params.id).then((movie) => {
+      setMovie(movie);
+      window.scrollTo(0, 0);
+    });
   }, [match.params.id]);
 
   if (!selectedMovie) {

@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useGlobal } from 'reactn';
+import React, { Fragment, useEffect, useGlobal, useRef } from 'reactn';
 import { Waypoint } from 'react-waypoint';
 import { Link } from "react-router-dom";
 import classNames from 'classnames';
@@ -16,12 +16,17 @@ function MoviesColumn(props) {
   const [selectedMovie, setSelectedMovie]  = useGlobal("selectedMovie");
 
   const { getSearch, getQuery } = props;
+  const moviesContainerEl = useRef(null);
 
   useEffect(() => {
     MovieController.fetchMovies(getQuery()).then((moviesCollection) =>
       setMovies(moviesCollection)
     );
   }, []);
+
+  useEffect(() => {
+    moviesContainerEl.current.scrollTo(0, 0);
+  }, [getQuery()]);
 
   // correctly handle browser's back button
   useEffect(() => {
@@ -44,7 +49,7 @@ function MoviesColumn(props) {
         <SearchField />
       </div>
 
-      <div className="MoviesColumn__body">
+      <div className="MoviesColumn__body" ref={moviesContainerEl}>
         {moviesCollection === null ? (
           <div className="text-center align-middle MoviesColumn__loading-container">
             <div className="spinner-border text-light MoviesColumn__loading-indicator" role="status">
