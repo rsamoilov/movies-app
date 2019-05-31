@@ -4,7 +4,6 @@ import RatingIcon from "components/rating-icon/index";
 import FavoriteButton from "components/favorite-button/index";
 import IMDBLink from "components/imdb-link/index";
 import GenresList from "components/genres-list/index";
-import configuration from "records/configuration";
 import Properties from "./properties";
 import Recommendations from "./recommendations";
 
