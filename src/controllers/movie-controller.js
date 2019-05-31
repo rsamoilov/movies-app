@@ -12,7 +12,7 @@ export default class MovieStore {
 
   static getMovies(page) {
     return fetch(
-      `http://api.themoviedb.org/3/movie/popular?page=${page}&api_key=${process.env.REACT_APP_API_KEY}`
+      `https://api.themoviedb.org/3/movie/popular?page=${page}&api_key=${process.env.REACT_APP_API_KEY}`
     );
   }
 
@@ -20,13 +20,13 @@ export default class MovieStore {
     const query = encodeURI(searchQuery);
 
     return fetch(
-      `http://api.themoviedb.org/3/search/movie?page=${page}&query=${query}&api_key=${process.env.REACT_APP_API_KEY}`
+      `https://api.themoviedb.org/3/search/movie?page=${page}&query=${query}&api_key=${process.env.REACT_APP_API_KEY}`
     );
   }
 
   static getMovie(id) {
     return fetch(
-      `http://api.themoviedb.org/3/movie/${id}?&append_to_response=similar&api_key=${process.env.REACT_APP_API_KEY}`
+      `https://api.themoviedb.org/3/movie/${id}?&append_to_response=similar&api_key=${process.env.REACT_APP_API_KEY}`
     ).then(response => response.json()).
       then(json => MovieInfoRecord.parse(json));
   }

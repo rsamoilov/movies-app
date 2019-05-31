@@ -11,7 +11,7 @@ export default class InitialDataController {
 
   static loadGenres() {
     return fetch(
-      `http://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_API_KEY}`
+      `https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_API_KEY}`
     ).then(response => response.json()).
       then(json => json.genres).
       then(apiGenres => genres.setGenres(apiGenres));
@@ -19,7 +19,7 @@ export default class InitialDataController {
 
   static loadConfiguration() {
     return fetch(
-      `http://api.themoviedb.org/3/configuration?api_key=${process.env.REACT_APP_API_KEY}`
+      `https://api.themoviedb.org/3/configuration?api_key=${process.env.REACT_APP_API_KEY}`
     ).then(response => response.json()).
       then(json => configuration.setConfiguration(json));
   }
