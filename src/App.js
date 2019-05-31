@@ -24,7 +24,13 @@ function App() {
   }, []);
 
   if(isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="col-1 mx-auto mt-5">
+        <div className="spinner-border" role="status">
+          <span className="sr-only">Loading...</span>
+        </div>
+      </div>
+    );
   }
 
   return (
