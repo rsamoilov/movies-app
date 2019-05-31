@@ -1,5 +1,6 @@
 import React, { setGlobal, useGlobal, useEffect } from "reactn";
 import { BrowserRouter, Route } from "react-router-dom";
+import classNames from "classnames";
 import InitialDataController from "controllers/initial-data-controller";
 import MoviesColumn from "components/movies-column/index";
 import MovieInfo from "components/movie-info/index";
@@ -15,6 +16,7 @@ setGlobal({
 
 function App() {
   const [isLoading, setLoading] = useGlobal("isLoading");
+  const [selectedMovie, _] = useGlobal("selectedMovie");
 
   useEffect(() => {
     InitialDataController.loadData().then(() => setLoading(false));
@@ -28,12 +30,22 @@ function App() {
     <BrowserRouter>
       <div className="App container-fluid">
         <div className="row pt-2">
-          <div className="col-4 App__sidebar">
-            <MoviesColumn />
-          </div>
-          <div className="col-8 App__container">
-            <Route path="/movies/:id" component={MovieInfo} />
-          </div>
+          <Route
+            path="/"
+            render={props =>
+              <div className={classNames("col-12 col-lg-4 App__sidebar", { "d-none d-lg-block": selectedMovie })}>
+                <MoviesColumn {...props} />
+              </div>
+            }
+          />
+          <Route
+            path="/movies/:id"
+            render={props =>
+              <div className={classNames("col-12 col-lg-8 App__container", { "d-none d-lg-block": !selectedMovie })}>
+                <MovieInfo {...props} />
+              </div>
+            }
+          />
         </div>
       </div>
     </BrowserRouter>

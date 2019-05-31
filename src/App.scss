@@ -1,7 +1,15 @@
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins/_breakpoints";
+
 .App {
   background-color: #131921;
 
   &__container {
     height: 97vh;
+
+    @include media-breakpoint-down(md) {
+      height: 100%;
+    }
   }
 }

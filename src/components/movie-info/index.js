@@ -24,11 +24,11 @@ export default function MovieInfo({ match }) {
   return (
     <div className="MovieInfo p-3">
       <div className="d-flex justify-content-between mb-3">
-        <div className="col-10">
+        <div className="col-8 col-lg-10">
           <h4>{selectedMovie.title}</h4>
           <h6 className="text-secondary">{selectedMovie.originalTitle}</h6>
         </div>
-        <div className="col-2">
+        <div className="col-4 col-lg-2">
           <div className="d-flex justify-content-end">
             <div className="mr-2"><RatingIcon movie={selectedMovie} /></div>
             <FavoriteButton movie={selectedMovie} />
@@ -39,12 +39,12 @@ export default function MovieInfo({ match }) {
         </div>
       </div>
 
-      <div className="d-flex justify-content-between">
-        <div className="col-4">
+      <div className="d-flex justify-content-center align-items-center align-items-lg-stretch flex-column flex-lg-row">
+        <div className="col-lg-4 col-md-6">
           <img className="img-fluid" src={selectedMovie.getPosterURL()} />
         </div>
 
-        <div className="col-8">
+        <div className="col-lg-8 col-md-12 mt-3 mt-lg-0">
           <Properties movie={selectedMovie} />
 
           <div className="mt-4">
@@ -57,7 +57,7 @@ export default function MovieInfo({ match }) {
         </div>
       </div>
 
-      <div className="col-10 mx-auto mt-5">
+      <div className="col-12 col-lg-10 mx-auto mt-5">
         <Recommendations movies={selectedMovie.recommendations} />
       </div>
     </div>
