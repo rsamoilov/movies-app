@@ -1,17 +1,20 @@
 import React from 'react';
 import { withRouter } from "react-router-dom";
-import LocationSearch from "utils/location-search";
 
 export default function withSearch(WrappedComponent) {
   return withRouter((props) => {
-    const locationSearch = new LocationSearch(props.location.search);
+    let searchQuery = props.location.search.replace("?query=", "");
 
-    const setQuery = (searchQuery) => {
-      locationSearch.setQuery(searchQuery)
-      props.history.push({ search: locationSearch.toString() });
+    try {
+      searchQuery = decodeURI(searchQuery);
+    } catch (URIError) { }
+
+    const setQuery = (newSearchQuery) => {
+      searchQuery = newSearchQuery;
+      props.history.push({ search: searchQuery.length ? `query=${newSearchQuery}` : "" });
     };
-    const getQuery  = () => locationSearch.getQuery();
-    const getSearch = () => locationSearch.toString();
+    const getQuery  = () => searchQuery;
+    const getSearch = () => `query=${searchQuery}`;
 
     return <WrappedComponent
              {...props}
