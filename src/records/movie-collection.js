@@ -5,7 +5,7 @@ export default class MovieCollection {
     return new MovieCollection({
       currentPage: apiMovies.page,
       total: apiMovies.total_results,
-      movies: apiMovies.results.map(m => MovieRecord.parse(m))
+      movies: (apiMovies.results || []).map(m => MovieRecord.parse(m))
     });
   }
 
