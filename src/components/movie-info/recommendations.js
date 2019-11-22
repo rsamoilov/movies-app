@@ -27,7 +27,7 @@ function Recommendations(props) {
 }
 
 Recommendations.propTypes = {
-  movies: PropTypes.arrayOf(MovieRecord)
+  movies: PropTypes.arrayOf(PropTypes.instanceOf(MovieRecord))
 };
 
 export default withSearch(Recommendations);
