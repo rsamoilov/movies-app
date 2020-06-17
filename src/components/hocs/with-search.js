@@ -14,7 +14,7 @@ export default function withSearch(WrappedComponent) {
       props.history.push({ search: searchQuery.length ? `query=${newSearchQuery}` : "" });
     };
     const getQuery  = () => searchQuery;
-    const getSearch = () => `query=${searchQuery}`;
+    const getSearch = () => searchQuery.length ? `query=${searchQuery}` : "";
 
     return <WrappedComponent
              {...props}
